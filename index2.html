@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Weather</title>
+    <meta charset="UTF-8" />
+    <link href="src/styles.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <style>
+      h1 {
+        color: rgba(59, 59, 59, 0.829);
+        text-align: center;
+        margin-top: 5%;
+      }
+      h2 {
+        color: rgba(59, 59, 59, 0.829);
+        text-align: center;
+      }
+      h4 {
+        color: rgba(59, 59, 59, 0.829);
+        text-align: center;
+        font-size: smaller;
+      }
+      form {
+        margin-top: 5%;
+        text-align: center;
+      }
+      input {
+        border-radius: 4pt;
+        height: 36px;
+        padding: 1px;
+        margin-top: 2px;
+        padding-bottom: 6px;
+        padding-left: 10px;
+        padding-top: 2px;
+      }
+      .btn-secondary {
+        margin: 0;
+        height: 32 px;
+        padding-top: 5px;
+      }
+      .row {
+        text-align: center;
+        color: rgba(59, 59, 59, 0.829);
+      }
+      .days {
+        margin-top: 5%;
+        background-color: rgb(212, 202, 194);
+      }
+      .container {
+        margin-top: 3%;
+        padding-top: 5px;
+        background-color: rgba(240, 236, 236, 0.856);
+        border: rgba(59, 59, 59, 0.829);
+        border-width: 2px;
+        border-style: inset;
+        border-radius: 4pt;
+      }
+
+      .tempsign {
+        font-size: 12pt;
+        vertical-align: super;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <form class="centr" id="search-form">
+        <input id="myinput" type="text" placeholder="Change the City..." />
+        <button type="button" class="btn btn-secondary" id="button-search">
+          Go there!
+        </button>
+      </form>
+
+      <h1><span class="citybig" id="city-big">KYIV</span></h1>
+      <h4><span class="datetoday" id="day-today">Date</span></h4>
+      <h2>
+        <span class="tempbig" id="to-change-value">23</span>
+        <span class="tempsign">
+          <span class="celsius"><a href="" id="celsius-id">°C</a></span
+          >|<span class="fahrenheit"
+            ><a href="#" id="fahrenheit-id">°F</a></span
+          ></span
+        >
+      </h2>
+      <div class="row">
+        <div class="col">
+          <h3>Day max: 25°</h3>
+        </div>
+        <div class="col">
+          <h3>Night min: 15°</h3>
+        </div>
+      </div>
+
+      <div class="row days">
+        <div class="col">
+          <h3>Today: 25°</h3>
+        </div>
+        <div class="col">
+          <h3>Tomorrow: 15°</h3>
+        </div>
+        <div class="col">
+          <h3>13 Sept: 25°</h3>
+        </div>
+        <div class="col">
+          <h3>14 Sept: 15°</h3>
+        </div>
+        <div class="col">
+          <h3>15 Sept: 25°</h3>
+        </div>
+        <div class="col">
+          <h3>16 Sept: 15°</h3>
+        </div>
+        <div class="col">
+          <h3>17 Sept: 15°</h3>
+        </div>
+      </div>
+      <script>
+        function checkCity(event) {
+          event.preventDefault();
+          let inputCity = document.querySelector("#myinput");
+          let nameCityBig = document.querySelector("#city-big");
+          nameCityBig.innerHTML = `${inputCity.value.toUpperCase()}`;
+          let apiKey = "4c9b53e4f8f5eb00df5915bdca340605";
+          let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${inputCity.value}&appid=${apiKey}&units=metric`;
+          axios.get(apiURL).then(showWeather);
+        }
+
+        let formSearch = document.querySelector("#search-form");
+        formSearch.addEventListener("submit", checkCity);
+        let buttonSearch = document.querySelector("#button-search");
+        buttonSearch.addEventListener("click", checkCity);
+
+        function formatDate() {
+          let now = new Date();
+          let days = [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+          ];
+          let dayW = days[now.getDay()];
+
+          let hours =
+            now.getHours() < 10 ? "0" + now.getHours() : now.getHours();
+
+          let minutes =
+            now.getMinutes() < 10 ? "0" + now.getMinutes() : now.getMinutes();
+
+          let fullDate = `${dayW}  ${hours}:${minutes}`;
+          let dataReload = document.querySelector("#day-today");
+          dataReload.innerHTML = `${fullDate}`;
+        }
+
+        formatDate();
+
+        /* function changeToFahrenheit(event) {
+          event.preventDefault();
+          let switchFah = document.querySelector("#to-change-value");
+          switchFah.innerHTML = "73";
+        }*/
+
+        /*function changeToCelsius(event) {
+          event.preventDefault();
+          let switchCel = document.querySelector("#to-change-value");
+          switchCel.innerHTML = "23";
+        }*/
+
+        /*let aFahrenheit = document.querySelector("#fahrenheit-id");
+        let aCelsius = document.querySelector("#celsius-id");
+        aCelsius.addEventListener("click", changeToCelsius);
+        aFahrenheit.addEventListener("click", changeToFahrenheit);*/
+
+        function showWeather(response) {
+          let temperature = Math.round(response.data.main.temp);
+          let h2 = document.querySelector("#to-change-value");
+          h2.innerHTML = `${temperature}`;
+        }
+      </script>
+    </div>
+  </body>
+</html>
