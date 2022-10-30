@@ -3,7 +3,6 @@
   <head>
     <title>Weather</title>
     <meta charset="UTF-8" />
-    <link href="src/styles.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -12,18 +11,24 @@
     />
     <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
     <link href="style.css" rel="stylesheet" type="text/css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
     <div class="container">
       <form class="centr" id="search-form">
         <input id="myinput" type="text" placeholder="Change the City..." />
-        <button type="button" class="btn btn-secondary" id="button-search">
-          Go there!
-        </button>
+        <button type="button" class="pink" id="button-search">Go there!</button>
       </form>
 
       <h1><span class="citybig" id="city-big">KYIV</span></h1>
+      <p class="icon"><img src="02d.png" /></p>
       <h4><span class="datetoday" id="day-today">Date</span></h4>
       <h2>
         <span class="tempbig" id="to-change-value">23</span>
@@ -36,10 +41,16 @@
       </h2>
       <div class="row">
         <div class="col">
-          <h3>Day max: 25°</h3>
+          <ul>
+            <li><h3>Day max: 25°</h3></li>
+            <li><h3>Night min: 15°</h3></li>
+          </ul>
         </div>
         <div class="col">
-          <h3>Night min: 15°</h3>
+          <ul>
+            <li><h3>Humidity: 40%</h3></li>
+            <li><h3>Wind: 14 km/h</h3></li>
+          </ul>
         </div>
       </div>
 
@@ -66,13 +77,16 @@
           <h3>17 Sept: 15°</h3>
         </div>
       </div>
-      <script src="script.js"></script>
+      <footer id="created-by">
+        <a
+          href="https://github.com/Oleksandra-Rud/shecodes-weather-new"
+          id="ssilka"
+          >Open-source code</a
+        >
+        by Rudchenko Oleksandra
+      </footer>
     </div>
-    <footer id="created-by">
-      <a href="https://github.com/Oleksandra-Rud/shecodes-weather-new"
-        >Open-source code</a
-      >
-      by Rudchenko Oleksandra
-    </footer>
+
+    <script src="script.js"></script>
   </body>
 </html>
