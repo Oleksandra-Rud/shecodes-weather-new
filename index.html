@@ -11,68 +11,7 @@
       crossorigin="anonymous"
     />
     <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
-
-    <style>
-      h1 {
-        color: rgba(59, 59, 59, 0.829);
-        text-align: center;
-        margin-top: 5%;
-      }
-      h2 {
-        color: rgba(59, 59, 59, 0.829);
-        text-align: center;
-      }
-      h4 {
-        color: rgba(59, 59, 59, 0.829);
-        text-align: center;
-        font-size: smaller;
-      }
-      form {
-        margin-top: 5%;
-        text-align: center;
-      }
-      input {
-        border-radius: 4pt;
-        height: 36px;
-        padding: 1px;
-        margin-top: 2px;
-        padding-bottom: 6px;
-        padding-left: 10px;
-        padding-top: 2px;
-      }
-
-      #created-by {
-        text-align: center;
-        font-size: 14px;
-      }
-      .btn-secondary {
-        margin: 0;
-        height: 32 px;
-        padding-top: 5px;
-      }
-      .row {
-        text-align: center;
-        color: rgba(59, 59, 59, 0.829);
-      }
-      .days {
-        margin-top: 5%;
-        background-color: rgb(212, 202, 194);
-      }
-      .container {
-        margin-top: 2%;
-        padding-top: 5px;
-        background-color: rgba(240, 236, 236, 0.856);
-        border: rgba(59, 59, 59, 0.829);
-        border-width: 2px;
-        border-style: inset;
-        border-radius: 4pt;
-      }
-
-      .tempsign {
-        font-size: 12pt;
-        vertical-align: super;
-      }
-    </style>
+    <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
 
   <body>
@@ -127,71 +66,7 @@
           <h3>17 Sept: 15°</h3>
         </div>
       </div>
-      <script>
-        function checkCity(event) {
-          event.preventDefault();
-          let inputCity = document.querySelector("#myinput");
-          let nameCityBig = document.querySelector("#city-big");
-          nameCityBig.innerHTML = `${inputCity.value.toUpperCase()}`;
-          let apiKey = "4c9b53e4f8f5eb00df5915bdca340605";
-          let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${inputCity.value}&appid=${apiKey}&units=metric`;
-          axios.get(apiURL).then(showWeather);
-        }
-
-        let formSearch = document.querySelector("#search-form");
-        formSearch.addEventListener("submit", checkCity);
-        let buttonSearch = document.querySelector("#button-search");
-        buttonSearch.addEventListener("click", checkCity);
-
-        function formatDate() {
-          let now = new Date();
-          let days = [
-            "Sunday",
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-          ];
-          let dayW = days[now.getDay()];
-
-          let hours =
-            now.getHours() < 10 ? "0" + now.getHours() : now.getHours();
-
-          let minutes =
-            now.getMinutes() < 10 ? "0" + now.getMinutes() : now.getMinutes();
-
-          let fullDate = `${dayW}  ${hours}:${minutes}`;
-          let dataReload = document.querySelector("#day-today");
-          dataReload.innerHTML = `${fullDate}`;
-        }
-
-        formatDate();
-
-        /* function changeToFahrenheit(event) {
-          event.preventDefault();
-          let switchFah = document.querySelector("#to-change-value");
-          switchFah.innerHTML = "73";
-        }*/
-
-        /*function changeToCelsius(event) {
-          event.preventDefault();
-          let switchCel = document.querySelector("#to-change-value");
-          switchCel.innerHTML = "23";
-        }*/
-
-        /*let aFahrenheit = document.querySelector("#fahrenheit-id");
-        let aCelsius = document.querySelector("#celsius-id");
-        aCelsius.addEventListener("click", changeToCelsius);
-        aFahrenheit.addEventListener("click", changeToFahrenheit);*/
-
-        function showWeather(response) {
-          let temperature = Math.round(response.data.main.temp);
-          let h2 = document.querySelector("#to-change-value");
-          h2.innerHTML = `${temperature}`;
-        }
-      </script>
+      <script src="script.js"></script>
     </div>
     <footer id="created-by">
       <a href="https://github.com/Oleksandra-Rud/shecodes-weather-new"
