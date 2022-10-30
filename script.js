@@ -31,7 +31,6 @@ buttonSearch.addEventListener("click", checkCity);
         aFahrenheit.addEventListener("click", changeToFahrenheit);*/
 
 function showWeather(response) {
-  console.log(response.data);
   let temperature = Math.round(response.data.main.temp);
   let h2 = document.querySelector("#to-change-temp");
   h2.innerHTML = `${temperature}`;
