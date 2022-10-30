@@ -28,28 +28,38 @@
       </form>
 
       <h1><span class="citybig" id="city-big">KYIV</span></h1>
-      <p class="icon"><img src="02d.png" /></p>
+      <p class="icon"><img src="02d.png" id="icon-clouds" /></p>
       <h4><span class="datetoday" id="day-today">Date</span></h4>
       <h2>
-        <span class="tempbig" id="to-change-value">23</span>
-        <span class="tempsign">
-          <span class="celsius"><a href="" id="celsius-id">°C</a></span
+        <span class="tempbig" id="to-change-temp">23</span>
+        <span class="tempsign"
+          ><span class="celsius">
+            <!--<a href="" id="celsius-id"> -->
+            °C<!--</a></span
           >|<span class="fahrenheit"
-            ><a href="#" id="fahrenheit-id">°F</a></span
+            ><a href="#" id="fahrenheit-id">°F</a>--></span
           ></span
         >
       </h2>
       <div class="row">
         <div class="col">
           <ul>
-            <li><h3>Day max: 25°</h3></li>
-            <li><h3>Night min: 15°</h3></li>
+            <li>
+              <h3>Day max: <span id="to-change-max">25</span>°C</h3>
+            </li>
+            <li>
+              <h3>Night min: <span id="to-change-min">15</span>°C</h3>
+            </li>
           </ul>
         </div>
         <div class="col">
           <ul>
-            <li><h3>Humidity: 40%</h3></li>
-            <li><h3>Wind: 14 km/h</h3></li>
+            <li>
+              <h3>Humidity: <span id="to-change-humidity">40</span>%</h3>
+            </li>
+            <li>
+              <h3>Wind: <span id="to-change-wind">14</span> km/h</h3>
+            </li>
           </ul>
         </div>
       </div>

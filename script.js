@@ -31,9 +31,32 @@ buttonSearch.addEventListener("click", checkCity);
         aFahrenheit.addEventListener("click", changeToFahrenheit);*/
 
 function showWeather(response) {
+  console.log(response.data);
   let temperature = Math.round(response.data.main.temp);
-  let h2 = document.querySelector("#to-change-value");
+  let h2 = document.querySelector("#to-change-temp");
   h2.innerHTML = `${temperature}`;
+
+  let windspeed = Math.round(response.data.wind.speed);
+  let wind = document.querySelector("#to-change-wind");
+  wind.innerHTML = `${windspeed}`;
+
+  let humidity = Math.round(response.data.main.humidity);
+  let hum = document.querySelector("#to-change-humidity");
+  hum.innerHTML = `${humidity}`;
+
+  let daymax = Math.round(response.data.main.temp_max);
+  let max = document.querySelector("#to-change-max");
+  max.innerHTML = `${daymax}`;
+
+  let daymin = Math.round(response.data.main.temp_min);
+  let min = document.querySelector("#to-change-min");
+  min.innerHTML = `${daymin}`;
+
+  let icon = document.querySelector("#icon-clouds");
+  icon.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
 }
 
 function formatDate() {
