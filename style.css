@@ -132,7 +132,7 @@ a {
 }
 
 .forecast-image {
-  transform: scale(1);
+  transform: scale(0.9);
   margin-bottom: 2px;
 }
 .forecast-day {
