@@ -1,17 +1,21 @@
-function checkCity(event) {
+function checkCity(city) {
+  let apiKey = "4c9b53e4f8f5eb00df5915bdca340605";
+  let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiURL).then(showWeather);
+}
+
+function checkAfterSubmit(event) {
   event.preventDefault();
   let inputCity = document.querySelector("#myinput");
   let nameCityBig = document.querySelector("#city-big");
   nameCityBig.innerHTML = `${inputCity.value.toUpperCase()}`;
-  let apiKey = "4c9b53e4f8f5eb00df5915bdca340605";
-  let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${inputCity.value}&appid=${apiKey}&units=metric`;
-  axios.get(apiURL).then(showWeather);
+  checkCity(inputCity.value);
 }
 
 let formSearch = document.querySelector("#search-form");
-formSearch.addEventListener("submit", checkCity);
+formSearch.addEventListener("submit", checkAfterSubmit);
 let buttonSearch = document.querySelector("#button-search");
-buttonSearch.addEventListener("click", checkCity);
+buttonSearch.addEventListener("click", checkAfterSubmit);
 
 /* function changeToFahrenheit(event) {
           event.preventDefault();
@@ -58,6 +62,30 @@ function showWeather(response) {
   );
 }
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#big-forecast");
+
+  let forecastHTML = `<div class="row days forecast">`;
+  let daysForcast = ["Today", "Mon", "Tue", "Wed", "Thu", "Fri"];
+  daysForcast.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      ` <div class="col-2 weather-forecast">
+            <h3>${day}</h3>
+            <p class="forecast-image">
+              <img src="02d.png" id="icon-clouds" />
+            </p>
+            <div class="weather-temp-forecast">
+              <span class="maxforcast"> 25°</span>
+              <span class="minforcast"> 15°</span>
+            </div>
+          </div>`;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function formatDate() {
   let now = new Date();
   let days = [
@@ -82,3 +110,6 @@ function formatDate() {
 }
 
 formatDate();
+
+checkCity("Kyiv");
+displayForecast();
