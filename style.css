@@ -138,3 +138,11 @@ a {
 .forecast-day {
   font-size: 1.55rem;
 }
+.col-2 weather-forecast {
+  padding-left: 6px;
+  padding-right: 6px;
+}
+.seven-days {
+  margin-left: 0.25%;
+  margin-right: 0.25%;
+}
