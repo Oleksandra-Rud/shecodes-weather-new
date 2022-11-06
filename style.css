@@ -132,17 +132,13 @@ a {
 }
 
 .forecast-image {
-  transform: scale(0.9);
+  transform: scale(0.8);
   margin-bottom: 2px;
 }
 .forecast-day {
-  font-size: 1.55rem;
+  font-size: 1.5rem;
 }
 .col-2 weather-forecast {
   padding-left: 6px;
   padding-right: 6px;
-}
-.seven-days {
-  margin-left: 0.25%;
-  margin-right: 0.25%;
 }
